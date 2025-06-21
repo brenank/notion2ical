@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add: initial logic",
+  "packageName": "notion2ical",
+  "email": "brenankly@gmail.com",
+  "dependentChangeType": "patch"
+}
