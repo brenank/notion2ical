@@ -1,0 +1,20 @@
+{
+  "name": "notion2ical",
+  "entries": [
+    {
+      "date": "Sun, 29 Jun 2025 07:05:34 GMT",
+      "version": "0.0.2",
+      "tag": "notion2ical_v0.0.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "12c71410e6d1d8558d77687f0c47d444d9c8557f",
+            "comment": "add: initial logic"
+          }
+        ]
+      }
+    }
+  ]
+}
