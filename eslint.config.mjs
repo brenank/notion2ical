@@ -36,6 +36,6 @@ export default eslintConfig(
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
   {
-    ignores: ["./dist", "./change", "./node_modules"],
+    ignores: ["./dist", "./change", "./CHANGELOG*", "./node_modules"],
   },
 );
