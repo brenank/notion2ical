@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "lint: fix ignored files",
+  "packageName": "notion2ical",
+  "email": "brenankly@gmail.com",
+  "dependentChangeType": "none"
+}
