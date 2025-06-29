@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Sun, 29 Jun 2025 07:49:07 GMT",
+      "version": "0.0.2",
+      "tag": "notion2ical_v0.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "fb79e36e88ed30b1882b25e0c02e1b266ac734d0",
+            "comment": "lint: fix ignored files"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 29 Jun 2025 07:05:34 GMT",
       "version": "0.0.2",
       "tag": "notion2ical_v0.0.2",
