@@ -69,7 +69,7 @@ describe("given with pageSize 1", async (s) => {
 
   beforeEach(() => {
     const notionClient = new Client({
-      auth: process.env.NOTION_TOKEN,
+      auth: process.env.NOTION_AUTH_TOKEN,
       fetch: noCompressionFetch,
     });
     notion2ical = new Notion2ICal({ notionClient, pageSize: 1 });
@@ -198,7 +198,7 @@ describe("given with pageSize 100", async (s) => {
 
   beforeEach(() => {
     const notionClient = new Client({
-      auth: process.env.NOTION_TOKEN,
+      auth: process.env.NOTION_AUTH_TOKEN,
       fetch: noCompressionFetch,
     });
     notion2ical = new Notion2ICal({
