@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Tue, 01 Jul 2025 22:23:20 GMT",
+      "version": "0.0.2",
+      "tag": "notion2ical_v0.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "4bb8481f5057f57617dae63d80c3e1cdc9eb91a9",
+            "comment": "test: add timezone test"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 29 Jun 2025 07:49:07 GMT",
       "version": "0.0.2",
       "tag": "notion2ical_v0.0.2",
