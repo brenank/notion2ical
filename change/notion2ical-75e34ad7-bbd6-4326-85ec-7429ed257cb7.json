@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "fix: ensure change file exists",
-  "packageName": "notion2ical",
-  "email": "brenankly@gmail.com",
-  "dependentChangeType": "none"
-}

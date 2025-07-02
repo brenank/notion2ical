@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Wed, 02 Jul 2025 06:42:12 GMT",
+      "version": "0.0.2",
+      "tag": "notion2ical_v0.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "6b80ffc355992a36592af4879109f44fec842639",
+            "comment": "fix: ensure change file exists"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Jul 2025 22:23:20 GMT",
       "version": "0.0.2",
       "tag": "notion2ical_v0.0.2",
