@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update README.md",
+  "packageName": "notion2ical",
+  "email": "brenankly@gmail.com",
+  "dependentChangeType": "patch"
+}
