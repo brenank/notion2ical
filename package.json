@@ -1,6 +1,6 @@
 {
   "name": "notion2ical",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A library that converts a Notion calendar database into iCalendar \\(.ics\\) format.",
   "keywords": [
     "ical",

@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Thu, 03 Jul 2025 04:38:57 GMT",
+      "version": "0.0.3",
+      "tag": "notion2ical_v0.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "dbfcae2f79d3e631c5f51d3058965d5535d6735e",
+            "comment": "Update README.md"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 02 Jul 2025 06:42:12 GMT",
       "version": "0.0.2",
       "tag": "notion2ical_v0.0.2",
