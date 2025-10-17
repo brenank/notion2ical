@@ -114,11 +114,26 @@ export class IncrementalStorageFileRepository
   }
 
   private deserializeState(json: string): NotionIncrementalState {
-    const deserialized: NotionIncrementalState = JSON.parse(json);
-    return {
-      lastFullSync: new Date(deserialized.lastFullSync),
-      lastSynced: new Date(deserialized.lastSynced),
-      events: Object.fromEntries(
+    const deserialized = JSON.parse(json) as {
+      lastFullSync: string;
+      lastSynced: string;
+      events: Record<
+        string,
+        {
+          id: string;
+          title: string;
+          start: string;
+          end: string;
+          description: string;
+          createdAt: string;
+          updatedAt: string;
+        }
+      >;
+    };
+    return new NotionIncrementalState(
+      new Date(deserialized.lastFullSync),
+      new Date(deserialized.lastSynced),
+      Object.fromEntries(
         Object.entries(deserialized.events).map(([id, event]) => [
           id,
           {
@@ -130,6 +145,6 @@ export class IncrementalStorageFileRepository
           },
         ]),
       ),
-    };
+    );
   }
 }

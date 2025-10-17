@@ -12,10 +12,12 @@ export interface NotionEvent {
 
 export type NotionEventMap = Record<NotionPageId, NotionEvent>;
 
-export interface NotionIncrementalState {
-  lastFullSync: Date;
-  lastSynced: Date;
-  events: NotionEventMap;
+export class NotionIncrementalState {
+  constructor(
+    public lastFullSync: Date,
+    public lastSynced: Date,
+    public events: NotionEventMap,
+  ) {}
 }
 
 export interface IncrementalStorageRepository {

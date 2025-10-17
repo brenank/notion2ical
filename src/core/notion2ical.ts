@@ -153,11 +153,10 @@ export class Notion2ICal {
       eventsMap,
     });
 
-    await this.saveCachedState(cacheKey, {
-      lastSynced: syncedAt,
-      lastFullSync,
-      events: eventsMap,
-    });
+    await this.saveCachedState(
+      cacheKey,
+      new NotionIncrementalState(syncedAt, lastFullSync, eventsMap),
+    );
 
     const calendarResult = this.buildCalendar(eventsMap, calendarName);
     if (!calendarResult.value) {

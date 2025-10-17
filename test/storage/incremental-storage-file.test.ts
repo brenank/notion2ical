@@ -22,10 +22,10 @@ describe("IncrementalStorageFileRepository", () => {
       0,
       undefined,
     );
-    state = {
-      lastFullSync: new Date("2023-01-01T00:00:00Z"),
-      lastSynced: new Date("2023-01-01T01:00:00Z"),
-      events: {
+    state = new NotionIncrementalState(
+      new Date("2023-01-01T00:00:00Z"),
+      new Date("2023-01-01T01:00:00Z"),
+      {
         event1: {
           id: "event1",
           title: "Test Event 1",
@@ -45,7 +45,7 @@ describe("IncrementalStorageFileRepository", () => {
           updatedAt: new Date("2023-01-02T09:30:00Z"),
         },
       },
-    };
+    );
   });
 
   afterEach(() => {
