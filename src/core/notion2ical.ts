@@ -21,10 +21,13 @@ import {
   StorageError,
 } from "../types/errors/index.js";
 import {
+  AllDayNotionEvent,
+  DateOnly,
   IncrementalStorageRepository,
   NotionEvent,
   NotionEventMap,
   NotionIncrementalState,
+  TimedNotionEvent,
 } from "../types/incremental-storage.js";
 import { Logger } from "../types/logger.js";
 
@@ -324,15 +327,28 @@ export class Notion2ICal {
   private buildCalendar(eventsMap: NotionEventMap, name: string): ICalResult {
     const icsEvents: EventAttributes[] = [];
     for (const event of Object.values(eventsMap)) {
-      icsEvents.push({
-        uid: event.id,
-        start: event.start.getTime(),
-        end: event.end.getTime(),
-        title: event.title,
-        description: event.description,
-        created: event.createdAt.getTime(),
-        lastModified: event.updatedAt.getTime(),
-      });
+      // Timed events stay numeric timestamps; all-day events pass the [yyyy, m, d] tuple form iCal expects.
+      if (event.kind === "timed") {
+        icsEvents.push({
+          uid: event.id,
+          start: event.start.getTime(),
+          end: event.end.getTime(),
+          title: event.title,
+          description: event.description,
+          created: event.createdAt.getTime(),
+          lastModified: event.updatedAt.getTime(),
+        });
+      } else {
+        icsEvents.push({
+          uid: event.id,
+          start: event.start,
+          end: event.end,
+          title: event.title,
+          description: event.description,
+          created: event.createdAt.getTime(),
+          lastModified: event.updatedAt.getTime(),
+        });
+      }
     }
 
     const headers: HeaderAttributes = {
@@ -345,6 +361,81 @@ export class Notion2ICal {
       "Calendar built",
     );
     return calendar;
+  }
+
+  private parseDateOnly(
+    value: string,
+    pageId: string,
+    propertyName: string,
+    position: "start" | "end",
+  ): DateOnly {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    if (!match) {
+      throw new DateValueError(
+        pageId,
+        `Unparseable ${position} date for property "${propertyName}": ${value}`,
+      );
+    }
+
+    const year = Number.parseInt(match[1]!, 10);
+    const month = Number.parseInt(match[2]!, 10);
+    const day = Number.parseInt(match[3]!, 10);
+    const asDate = new Date(Date.UTC(year, month - 1, day));
+    if (Number.isNaN(asDate.getTime())) {
+      throw new DateValueError(
+        pageId,
+        `Unparseable ${position} date for property "${propertyName}": ${value}`,
+      );
+    }
+
+    return [year, month, day];
+  }
+
+  private getExclusiveAllDayEnd(
+    start: DateOnly,
+    inclusiveEnd: string | null,
+    pageId: string,
+    propertyName: string,
+  ): DateOnly {
+    if (!inclusiveEnd) {
+      return this.shiftDateOnly(start, 1);
+    }
+
+    const parsedInclusiveEnd = this.parseDateOnly(
+      inclusiveEnd,
+      pageId,
+      propertyName,
+      "end",
+    );
+    const startUtc = Date.UTC(start[0], start[1] - 1, start[2]);
+    const inclusiveUtc = Date.UTC(
+      parsedInclusiveEnd[0],
+      parsedInclusiveEnd[1] - 1,
+      parsedInclusiveEnd[2],
+    );
+    if (inclusiveUtc < startUtc) {
+      throw new DateValueError(
+        pageId,
+        `End date precedes start date for property "${propertyName}": ${inclusiveEnd}`,
+      );
+    }
+
+    return this.shiftDateOnly(parsedInclusiveEnd, 1);
+  }
+
+  private shiftDateOnly(date: DateOnly, days: number): DateOnly {
+    const [year, month, day] = date;
+    const shifted = new Date(Date.UTC(year, month - 1, day));
+    shifted.setUTCDate(shifted.getUTCDate() + days);
+    return [
+      shifted.getUTCFullYear(),
+      shifted.getUTCMonth() + 1,
+      shifted.getUTCDate(),
+    ];
+  }
+
+  private hasTimeComponent(value?: string | null): boolean {
+    return typeof value === "string" && value.includes("T");
   }
 
   private extractEventDetails(
@@ -423,40 +514,76 @@ export class Notion2ICal {
       description = descProperty.rich_text[0]?.plain_text ?? "";
     }
 
-    // 4) Build and return
-    const start = new Date(dateProperty.date.start);
+    const title = titleProperty.title[0]?.plain_text ?? "Untitled";
+    const createdAt = new Date(page.created_time);
+    const updatedAt = new Date(page.last_edited_time);
+    const startRaw = dateProperty.date.start;
+    const endRaw = dateProperty.date.end;
+    const isAllDayEvent =
+      !this.hasTimeComponent(startRaw) && !this.hasTimeComponent(endRaw);
+
+    if (isAllDayEvent) {
+      try {
+        const start = this.parseDateOnly(
+          startRaw,
+          pageId,
+          datePropertyName,
+          "start",
+        );
+        const end = this.getExclusiveAllDayEnd(
+          start,
+          endRaw,
+          pageId,
+          datePropertyName,
+        );
+        const event: AllDayNotionEvent = {
+          kind: "all-day",
+          id: pageId,
+          title,
+          start,
+          end,
+          description,
+          createdAt,
+          updatedAt,
+        };
+        return { ok: true, value: event };
+      } catch (error) {
+        if (error instanceof DateValueError) {
+          return { ok: false, error };
+        }
+        throw error;
+      }
+    }
+
+    const start = new Date(startRaw);
     if (Number.isNaN(start.getTime()))
       return {
         ok: false,
         error: new DateValueError(
           pageId,
-          `Unparseable start date: ${dateProperty.date.start}`,
+          `Unparseable start date: ${startRaw}`,
         ),
       };
     const end =
-      dateProperty.date.end === null
+      endRaw === null
         ? new Date(start.getTime() + defaultDurationMs)
-        : new Date(dateProperty.date.end);
+        : new Date(endRaw);
     if (Number.isNaN(end.getTime()))
       return {
         ok: false,
-        error: new DateValueError(
-          pageId,
-          `Unparseable end date: ${dateProperty.date.end}`,
-        ),
+        error: new DateValueError(pageId, `Unparseable end date: ${endRaw}`),
       };
 
-    return {
-      ok: true,
-      value: {
-        id: pageId,
-        title: titleProperty.title[0]?.plain_text ?? "Untitled",
-        start,
-        end,
-        description,
-        createdAt: new Date(page.created_time),
-        updatedAt: new Date(page.last_edited_time),
-      },
+    const event: TimedNotionEvent = {
+      kind: "timed",
+      id: pageId,
+      title,
+      start,
+      end,
+      description,
+      createdAt,
+      updatedAt,
     };
+    return { ok: true, value: event };
   }
 }
