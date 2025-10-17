@@ -42,12 +42,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "node --import tsx --test './test/**/*.ts'",
+    "check": "tsc -b",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "tsx --tsconfig tsconfig.test.json --test '**/*.test.ts'",
     "test:updateexpected": "UPDATE_EXPECTED=1 npm run test",
     "test:updatemocks": "UPDATE_MOCKS=1 npm run test:updateexpected",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "verify": "npm run check && npm run lint && npm test",
     "checkchange": "beachball check",
     "change": "beachball change",
     "release": "beachball publish"
