@@ -49,7 +49,9 @@
     "test:updatemocks": "UPDATE_MOCKS=1 npm run test:updateexpected",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "verify": "npm run check && npm run lint && npm test",
+    "fmt": "prettier --check .",
+    "fmt:fix": "prettier --write .",
+    "verify": "npm run check && npm run test && npm run lint && npm run fmt",
     "checkchange": "beachball check",
     "change": "beachball change",
     "release": "beachball publish"

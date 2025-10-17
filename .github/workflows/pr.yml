@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
@@ -30,11 +30,14 @@ jobs:
       - name: Check
         run: npm run check
 
+      - name: Test
+        run: npm run test
+
       - name: Lint
         run: npm run lint
 
-      - name: Test
-        run: npm run test
+      - name: Format
+        run: npm run fmt
 
       - name: Verify Change File Exists
         run: npm run checkchange
