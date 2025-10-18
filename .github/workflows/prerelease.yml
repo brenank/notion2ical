@@ -1,6 +1,6 @@
 name: Prerelease
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.sha }}
   cancel-in-progress: true
 on:
   workflow_dispatch:
@@ -9,7 +9,6 @@ jobs:
   publish_prerelease:
     name: Publish Prerelease
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
     permissions:
       actions: read
       contents: write
@@ -35,7 +34,7 @@ jobs:
 
       - name: Publish Prerelease
         run: |
-          COMMIT_SHA=${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${{ github.sha }}
           COMMIT_SHA_SHORT=$(git rev-parse --short "$COMMIT_SHA")
           npm run release -- --token "$NODE_AUTH_TOKEN" --no-push --prerelease-prefix $COMMIT_SHA_SHORT --tag prerelease
         env:
