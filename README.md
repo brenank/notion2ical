@@ -22,8 +22,8 @@ npm install notion2ical
 ## Usage
 
 ```ts
-import { Notion2ICal } from 'notion2ical';
-import { Client } from '@notionhq/client';
+import { Notion2ICal } from "notion2ical";
+import { Client } from "@notionhq/client";
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -33,17 +33,17 @@ const converter = new Notion2ICal({
 });
 
 const icsString = await converter.convert(
-  'your-database-id',
-  'Name',         // Title property name
-  'Date',         // Date property name
-  'Description',  // (Optional) Description property name
-  'My Calendar',  // Calendar name
-  60 * 60 * 1000  // Default event duration in ms (e.g., 1 hour)
+  "your-database-id",
+  "Name", // Title property name
+  "Date", // Date property name
+  "Description", // (Optional) Description property name
+  "My Calendar", // Calendar name
+  60 * 60 * 1000, // Default event duration in ms (e.g., 1 hour)
 );
 
 // Save to file
-import { writeFileSync } from 'node:fs';
-writeFileSync('calendar.ics', icsString);
+import { writeFileSync } from "node:fs";
+writeFileSync("calendar.ics", icsString);
 ```
 
 ## API
