@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "feat: support all-day events and cache versioning",
-  "packageName": "notion2ical",
-  "email": "brenankly@gmail.com",
-  "dependentChangeType": "patch"
-}

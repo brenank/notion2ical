@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Thu, 23 Oct 2025 03:11:07 GMT",
+      "version": "0.0.4",
+      "tag": "notion2ical_v0.0.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "8ba518b038cd811b47702000ca428362818bafb0",
+            "comment": "feat: support all-day events and cache versioning"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Jul 2025 04:38:57 GMT",
       "version": "0.0.3",
       "tag": "notion2ical_v0.0.3",

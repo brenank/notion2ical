@@ -1,8 +1,16 @@
 # Change Log - notion2ical
 
-<!-- This log was last generated on Thu, 03 Jul 2025 04:38:57 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 23 Oct 2025 03:11:07 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.4
+
+Thu, 23 Oct 2025 03:11:07 GMT
+
+### Patches
+
+- feat: support all-day events and cache versioning (brenankly@gmail.com)
 
 ## 0.0.3
 
