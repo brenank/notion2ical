@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "CI workflow updates",
+  "comment": "Synchronize already-published 0.0.5",
   "packageName": "notion2ical",
   "email": "brenankly@gmail.com",
   "dependentChangeType": "none"
