@@ -10,10 +10,7 @@ jobs:
     name: Validate Pull Request
     runs-on: ubuntu-latest
     permissions:
-      actions: read
-      checks: write
       contents: read
-      packages: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
