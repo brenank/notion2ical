@@ -1,8 +1,16 @@
 # Change Log - notion2ical
 
-<!-- This log was last generated on Thu, 23 Oct 2025 03:11:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 07 Oct 2026 06:02:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.5
+
+Wed, 07 Oct 2026 06:02:52 GMT
+
+### Patches
+
+- build(deps): bump nanoid from 3.3.11 to 3.3.18 (brenankly@gmail.com)
 
 ## 0.0.4
 

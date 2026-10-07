@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "build(deps): bump nanoid from 3.3.11 to 3.3.18",
-  "packageName": "notion2ical",
-  "email": "brenankly@gmail.com",
-  "dependentChangeType": "patch"
-}
