@@ -2,6 +2,35 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Wed, 07 Oct 2026 06:02:52 GMT",
+      "version": "0.0.5",
+      "tag": "notion2ical_v0.0.5",
+      "comments": {
+        "none": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "2cab3f31c46807858c5bfa2005caba41afbf6ddd",
+            "comment": "CI workflow updates"
+          },
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "bcb2d60e96b8a81b234a44e2bbe0da802d83ad37",
+            "comment": "CI workflow updates"
+          }
+        ],
+        "patch": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "e723d7ebee7886618877b98e5f558b0b977dc1d3",
+            "comment": "build(deps): bump nanoid from 3.3.11 to 3.3.18"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 23 Oct 2025 03:11:07 GMT",
       "version": "0.0.4",
       "tag": "notion2ical_v0.0.4",
