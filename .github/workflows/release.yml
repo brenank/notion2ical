@@ -15,7 +15,19 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.ACTION_TOKEN_APP_ID }}
+          private-key: ${{ secrets.ACTION_TOKEN_APP_PRIVATE_KEY }}
+          owner: brenank
+          repositories: notion2ical
+          permission-contents: write
+
       - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
       - uses: actions/setup-node@v4
         with:
