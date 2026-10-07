@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Wed, 07 Oct 2026 06:07:59 GMT",
+      "version": "0.0.5",
+      "tag": "notion2ical_v0.0.5",
+      "comments": {
+        "none": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "f4d40cb3aa0cb8f5a7a329a14f0c51030572db25",
+            "comment": "Synchronize already-published 0.0.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Oct 2026 06:02:52 GMT",
       "version": "0.0.5",
       "tag": "notion2ical_v0.0.5",
