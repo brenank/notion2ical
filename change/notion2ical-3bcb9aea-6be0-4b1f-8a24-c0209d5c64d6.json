@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "CI workflow updates",
+  "packageName": "notion2ical",
+  "email": "brenankly@gmail.com",
+  "dependentChangeType": "none"
+}
