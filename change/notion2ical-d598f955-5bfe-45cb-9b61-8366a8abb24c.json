@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "build(deps-dev): bump brace-expansion from 1.1.11 to 1.1.21",
-  "packageName": "notion2ical",
-  "email": "brenankly@gmail.com",
-  "dependentChangeType": "patch"
-}

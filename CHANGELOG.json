@@ -2,6 +2,21 @@
   "name": "notion2ical",
   "entries": [
     {
+      "date": "Wed, 07 Oct 2026 06:12:56 GMT",
+      "version": "0.0.6",
+      "tag": "notion2ical_v0.0.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "brenankly@gmail.com",
+            "package": "notion2ical",
+            "commit": "5d6993c01b6917d51fdf94d150582486aba294a5",
+            "comment": "build(deps-dev): bump brace-expansion from 1.1.11 to 1.1.21"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Oct 2026 06:07:59 GMT",
       "version": "0.0.5",
       "tag": "notion2ical_v0.0.5",

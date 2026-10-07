@@ -1,8 +1,16 @@
 # Change Log - notion2ical
 
-<!-- This log was last generated on Wed, 07 Oct 2026 06:02:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 07 Oct 2026 06:12:56 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.6
+
+Wed, 07 Oct 2026 06:12:56 GMT
+
+### Patches
+
+- build(deps-dev): bump brace-expansion from 1.1.11 to 1.1.21 (brenankly@gmail.com)
 
 ## 0.0.5
 
